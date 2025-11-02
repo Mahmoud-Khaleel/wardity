@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-
+import api from "../../../lib/axios";
 import { motion, AnimatePresence } from "framer-motion";
 import LoadingButton from "../../../components/LoadingButton";
 import Rating from "../../../components/Rating";
@@ -27,22 +27,10 @@ function EditReviewModal({ review, onClose }) {
 
     try {
       setIsLoading(true);
-      const res = await fetch(
+      const { data } = await api.patch(
         `${Constants.BASE_URL}/products/690716ee329f24ecdb9fe8ab/reviews/${review._id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDYyZDU2ODA4MTJjNjc5ZDkwNWE4NSIsImlhdCI6MTc2MjA4ODQ2MCwiZXhwIjoxNzYyNjkzMjYwfQ.NoFtMph7R1K1espayNGvwJiYugr8C4XYgknk2V_yk60",
-          },
-          body: JSON.stringify({ review: reviewText, rating }),
-        }
+        { review: reviewText, rating }
       );
-
-      const data = await res.json();
-
-      if (!res.ok) throw new Error(data.message || "Update failed");
 
       toast.success("Review updated successfully");
 

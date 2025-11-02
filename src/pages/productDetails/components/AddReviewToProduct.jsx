@@ -8,6 +8,7 @@ import { useState } from "react";
 import Constants from "../../../app/constants";
 import { toast } from "react-toastify";
 import useProductReviews from "../context/productReviews/useProductReviews";
+import api from "../../../lib/axios";
 
 function AddReviewToProduct() {
   const [showTextAreaToWriteReview, setShowTextAreaToWriteReview] =
@@ -27,18 +28,11 @@ function AddReviewToProduct() {
       return;
     }
     try {
-      const res = await fetch(
+      const { data } = await api.post(
         `${Constants.BASE_URL}/products/690716ee329f24ecdb9fe8ab/reviews`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ review: reviewText, rating: rating }),
-        }
+        { review: reviewText, rating: rating }
       );
 
-      const data = await res.json();
       toast.success("Review added successfully");
       setProductReviews((prevReviews) => [data.data, ...prevReviews]);
       setReviewText("");

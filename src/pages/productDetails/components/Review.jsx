@@ -5,14 +5,11 @@ import { MoreVertical } from "lucide-react";
 import Constants from "../../../app/constants";
 import { toast } from "react-toastify";
 import useProductReviews from "../context/productReviews/useProductReviews";
-import useReviewAreaVisibility from "../context/reviewAreaVisibility/useReviewAreaVisibility";
-import useRating from "../context/rating/useRating";
 import EditReviewModal from "./EditReviewModal";
+import api from "../../../lib/axios";
 
 function Review({ review }) {
   const { setProductReviews } = useProductReviews();
-  const [__, setRating] = useRating();
-  const [_, setShowTextAreaToWriteReview] = useReviewAreaVisibility();
   const [showModal, setShowModal] = useState(false);
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,17 +32,10 @@ function Review({ review }) {
 
   async function onDelete() {
     try {
-      await fetch(
-        `${Constants.BASE_URL}/products/690716ee329f24ecdb9fe8ab/reviews/${review._id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDYyZDU2ODA4MTJjNjc5ZDkwNWE4NSIsImlhdCI6MTc2MjA4ODQ2MCwiZXhwIjoxNzYyNjkzMjYwfQ.NoFtMph7R1K1espayNGvwJiYugr8C4XYgknk2V_yk60",
-          },
-        }
+      await api.delete(
+        `${Constants.BASE_URL}/products/690716ee329f24ecdb9fe8ab/reviews/${review._id}`
       );
+
       toast.success("Review deleted successfully");
       setProductReviews((prevReviews) =>
         prevReviews.filter((r) => r._id !== review._id)
@@ -54,11 +44,6 @@ function Review({ review }) {
       toast.error("Failed to delete review");
       console.log(error);
     }
-  }
-
-  function onUpdate() {
-    setShowTextAreaToWriteReview(true);
-    setRating(+review.rating);
   }
 
   return (
