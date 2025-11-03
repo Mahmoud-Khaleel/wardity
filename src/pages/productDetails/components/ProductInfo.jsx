@@ -15,6 +15,15 @@ function ProductInfo({ product }) {
     day: "numeric",
   });
 
+  function calculateProductReview() {
+    if (productReviews.length === 0) return product.ratingsAverage;
+    const totalRating = productReviews.reduce(
+      (sum, review) => sum + review.rating,
+      0
+    );
+    return +(totalRating / productReviews.length).toFixed(1);
+  }
+
   return (
     <div className="flex  items-start md:items-stretch flex-wrap mt-4 text-gray-500">
       <span className="underline">{formattedDate}</span>
@@ -36,7 +45,7 @@ function ProductInfo({ product }) {
         title={productReviews.length === 0 ? "-" : productReviews.length}
       />
       <VerticalDivider />
-      <Icon icon={StartIcon} title={product.ratingsAverage} />
+      <Icon icon={StartIcon} title={calculateProductReview()} />
       <VerticalDivider />
       <span>{price}$</span>
     </div>

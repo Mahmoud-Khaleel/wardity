@@ -2,22 +2,30 @@ import { useContext } from "react";
 import LoadingButton from "../../../components/LoadingButton";
 import useProductQuantity from "../context/productQuantity/useProductQuantity";
 import ProductQuantity from "./ProductQuantity";
+import useProduct from "../context/product/useProduct";
 import { CartContext } from "../../cart/context/CartContext";
 
 export default function AddProductToCart({ product }) {
   const { addToCart } = useContext(CartContext);
   const [quantity] = useProductQuantity();
-  const handleSubmit = async () => {
-    const productToAdd = {
-      productId: product._id,
-      quantity,
-      name: product.name,
-      image: product.images?.length > 0 ? product.images[0].url : null,
-      price: product.price,
-    };
+  const { setProduct } = useProduct();
 
-    addToCart(productToAdd);
-    return new Promise((resolve) => setTimeout(resolve, 1000));
+  const handleSubmit = async () => {
+    {
+      setProduct((prev) => {
+        return { ...prev, rating: 3 };
+      });
+      const productToAdd = {
+        productId: product._id,
+        quantity,
+        name: product.name,
+        image: product.images?.length > 0 ? product.images[0].url : null,
+        price: product.price,
+      };
+
+      addToCart(productToAdd);
+      return new Promise((resolve) => setTimeout(resolve, 1000));
+    }
   };
 
   return (

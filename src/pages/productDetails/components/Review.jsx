@@ -2,17 +2,17 @@ import { useState, useRef, useEffect } from "react";
 import ExpandableText from "../../../components/ExpandableText";
 import Rating from "../../../components/Rating";
 import { MoreVertical } from "lucide-react";
-import Constants from "../../../app/constants";
 import { toast } from "react-toastify";
 import useProductReviews from "../context/productReviews/useProductReviews";
 import EditReviewModal from "./EditReviewModal";
 import api from "../../../lib/axios";
 import Default from "@/assets/default.jpg";
+import { useParams } from "react-router-dom";
 
 function Review({ review }) {
   const { setProductReviews } = useProductReviews();
   const [showModal, setShowModal] = useState(false);
-
+  const { id } = useParams();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -33,9 +33,7 @@ function Review({ review }) {
 
   async function onDelete() {
     try {
-      await api.delete(
-        `${Constants.BASE_URL}/products/690716ee329f24ecdb9fe8ab/reviews/${review._id}`
-      );
+      await api.delete(`/products/${id}/reviews/${review._id}`);
 
       toast.success("Review deleted successfully");
       setProductReviews((prevReviews) =>
@@ -66,19 +64,19 @@ function Review({ review }) {
           <div ref={menuRef} className="relative ml-2">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-1 hover:bg-gray-100 rounded-full"
+              className="p-1 hover:bg-gray-100 rounded-full cursor-pointer"
             >
               <MoreVertical size={20} />
             </button>
 
             {menuOpen && (
-              <div className="absolute right-0 mt-1 w-28 bg-white border  shadow-md z-10">
+              <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg py-2 z-50">
                 <button
                   onClick={() => {
                     setMenuOpen(false);
                     setShowModal(true);
                   }}
-                  className="block w-full text-left px-3 py-2 hover:bg-gray-100"
+                  className="block w-full text-left px-3 py-2 text-green-700 hover:bg-gray-100 cursor-pointer"
                 >
                   Update
                 </button>
@@ -87,7 +85,7 @@ function Review({ review }) {
                     setMenuOpen(false);
                     onDelete();
                   }}
-                  className="block w-full text-left px-3 py-2 hover:bg-gray-100 text-red-500"
+                  className=" block w-full text-left px-3 py-2 hover:bg-gray-100 text-red-500 cursor-pointer"
                 >
                   Delete
                 </button>

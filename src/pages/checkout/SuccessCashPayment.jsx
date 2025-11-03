@@ -11,7 +11,7 @@ const SucessCashPayment = () => {
     clearCart();
   }, [clearCart]);
   return (
-    <div className="flex flex-col items-center justify-center  bg-gray-50 text-center p-6">
+    <div className="flex flex-col items-center justify-center text-center p-6">
       <CheckCircle className="text-green-500 w-16 h-16 mb-4" />
       <h1 className="text-2xl font-semibold mb-2">
         Order Placed Successfully 🎉

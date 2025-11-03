@@ -5,14 +5,15 @@ import LoadingButton from "../../../components/LoadingButton";
 import useReviewAreaVisibility from "../context/reviewAreaVisibility/useReviewAreaVisibility";
 import useRating from "../context/rating/useRating";
 import { useState } from "react";
-import Constants from "../../../app/constants";
 import { toast } from "react-toastify";
 import useProductReviews from "../context/productReviews/useProductReviews";
 import api from "../../../lib/axios";
+import { useParams } from "react-router-dom";
 
 function AddReviewToProduct() {
   const [showTextAreaToWriteReview, setShowTextAreaToWriteReview] =
     useReviewAreaVisibility();
+  const { id } = useParams();
   const [rating, setRating] = useRating();
   const [reviewText, setReviewText] = useState("");
   const { setProductReviews } = useProductReviews();
@@ -28,10 +29,10 @@ function AddReviewToProduct() {
       return;
     }
     try {
-      const { data } = await api.post(
-        `${Constants.BASE_URL}/products/690716ee329f24ecdb9fe8ab/reviews`,
-        { review: reviewText, rating: rating }
-      );
+      const { data } = await api.post(`/products/${id}/reviews`, {
+        review: reviewText,
+        rating: rating,
+      });
 
       toast.success("Review added successfully");
       setProductReviews((prevReviews) => [data.data, ...prevReviews]);
