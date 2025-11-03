@@ -5,14 +5,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import LoadingButton from "../../../components/LoadingButton";
 import Rating from "../../../components/Rating";
 import { toast } from "react-toastify";
-import Constants from "../../../app/constants";
 import useProductReviews from "../context/productReviews/useProductReviews";
+import { useParams } from "react-router-dom";
 
 function EditReviewModal({ review, onClose }) {
   const [rating, setRating] = useState(review.rating);
   const [reviewText, setReviewText] = useState(review.review);
   const [isLoading, setIsLoading] = useState(false);
   const { setProductReviews } = useProductReviews();
+  const { id } = useParams();
 
   async function handleReviewUpdate() {
     if (rating === 0) {
@@ -28,7 +29,7 @@ function EditReviewModal({ review, onClose }) {
     try {
       setIsLoading(true);
       const { data } = await api.patch(
-        `${Constants.BASE_URL}/products/690716ee329f24ecdb9fe8ab/reviews/${review._id}`,
+        `/products/${id}/reviews/${review._id}`,
         { review: reviewText, rating }
       );
 

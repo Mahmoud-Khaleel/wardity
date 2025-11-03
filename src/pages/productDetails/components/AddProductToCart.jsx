@@ -1,10 +1,16 @@
 import LoadingButton from "../../../components/LoadingButton";
 import ProductQuantityProvider from "../context/productQuantity/ProductQuantityProvider";
 import ProductQuantity from "./ProductQuantity";
+import useProduct from "../context/product/useProduct";
 
 export default function AddProductToCart({ product }) {
-  const handleSubmit = () =>
-    new Promise((resolve) => setTimeout(resolve, 2000));
+  const { setProduct } = useProduct();
+  const handleSubmit = () => {
+    setProduct((prev) => {
+      return { ...prev, rating: 3 };
+    });
+    return new Promise((resolve) => setTimeout(resolve, 2000));
+  };
 
   return (
     <ProductQuantityProvider>

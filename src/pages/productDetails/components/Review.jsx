@@ -2,17 +2,17 @@ import { useState, useRef, useEffect } from "react";
 import ExpandableText from "../../../components/ExpandableText";
 import Rating from "../../../components/Rating";
 import { MoreVertical } from "lucide-react";
-import Constants from "../../../app/constants";
 import { toast } from "react-toastify";
 import useProductReviews from "../context/productReviews/useProductReviews";
 import EditReviewModal from "./EditReviewModal";
 import api from "../../../lib/axios";
 import Default from "@/assets/default.jpg";
+import { useParams } from "react-router-dom";
 
 function Review({ review }) {
   const { setProductReviews } = useProductReviews();
   const [showModal, setShowModal] = useState(false);
-
+  const { id } = useParams();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -33,9 +33,7 @@ function Review({ review }) {
 
   async function onDelete() {
     try {
-      await api.delete(
-        `${Constants.BASE_URL}/products/690716ee329f24ecdb9fe8ab/reviews/${review._id}`
-      );
+      await api.delete(`/products/${id}/reviews/${review._id}`);
 
       toast.success("Review deleted successfully");
       setProductReviews((prevReviews) =>

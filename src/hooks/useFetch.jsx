@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "@/lib/axios";
-import Constants from "../app/constants";
 
 export function useFetch(url) {
   const [data, setData] = useState(null);
@@ -12,6 +11,7 @@ export function useFetch(url) {
 
     const fetchData = async () => {
       setError(null);
+      setLoading(true);
 
       try {
         const res = await axios.get(url);

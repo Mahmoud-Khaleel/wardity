@@ -23,7 +23,7 @@ function ProductReviews() {
 
           <AddReviewToProduct />
           {loading ? (
-            Array.from({ length: 3 }).map((index) => (
+            Array.from({ length: 3 }).map((_, index) => (
               <ReviewShimmer key={index} />
             ))
           ) : productReviews.length == 0 ? (
