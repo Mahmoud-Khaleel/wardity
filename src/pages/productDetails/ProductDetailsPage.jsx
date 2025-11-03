@@ -8,6 +8,7 @@ import ProductReviews from "./components/ProductReviews";
 import SimilarProducts from "./components/SimilarProducts";
 import Error from "../../components/Error";
 import ProductReviewsProvider from "./context/productReviews/ProductReviewsProvider";
+import ProductQuantityProvider from "./context/productQuantity/ProductQuantityProvider";
 import { useParams } from "react-router-dom";
 
 function ProductDetailsPage() {
@@ -28,7 +29,9 @@ function ProductDetailsPage() {
           <ProductImages product={data} />
           <ProductInfo product={data} />
           <ProductDescription product={data} />
-          <AddProductToCart product={data} />
+          <ProductQuantityProvider>
+            <AddProductToCart product={data} />
+          </ProductQuantityProvider>
           <ProductReviews />
         </div>
 

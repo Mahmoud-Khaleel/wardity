@@ -2,8 +2,12 @@ import { Search, ShoppingBag, Menu } from "lucide-react";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../pages/authentication/context/AuthContext";
+import { CartContext } from "../pages/cart/context/CartContext";
 
 export default function Navbar() {
+  const { cart } = useContext(CartContext);
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
   const { user, logout } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -68,10 +72,17 @@ export default function Navbar() {
           )}
         </div>
 
-        <ShoppingBag
+        <div
+          className="flex items-center gap-1 cursor-pointer"
           onClick={() => navigate("/cart")}
-          className="w-5 h-5 cursor-pointer hover:text-yellow-400"
-        />
+        >
+          <ShoppingBag className="w-5 h-5 hover:text-hover" />
+          {totalItems > 0 && (
+            <span className="text-sm font-semibold text-hover">
+              {totalItems}
+            </span>
+          )}
+        </div>
 
         {user && (
           <div className="relative">

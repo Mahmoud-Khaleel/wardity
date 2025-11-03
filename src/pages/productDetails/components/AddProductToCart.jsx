@@ -1,24 +1,36 @@
+import { useContext } from "react";
 import LoadingButton from "../../../components/LoadingButton";
-import ProductQuantityProvider from "../context/productQuantity/ProductQuantityProvider";
+import useProductQuantity from "../context/productQuantity/useProductQuantity";
 import ProductQuantity from "./ProductQuantity";
+import { CartContext } from "../../cart/context/CartContext";
 
 export default function AddProductToCart({ product }) {
-  const handleSubmit = () =>
-    new Promise((resolve) => setTimeout(resolve, 2000));
+  const { addToCart } = useContext(CartContext);
+  const [quantity] = useProductQuantity();
+  const handleSubmit = async () => {
+    const productToAdd = {
+      productId: product._id,
+      quantity,
+      name: product.name,
+      image: product.images?.length > 0 ? product.images[0].url : null,
+      price: product.price,
+    };
+
+    addToCart(productToAdd);
+    return new Promise((resolve) => setTimeout(resolve, 1000));
+  };
 
   return (
-    <ProductQuantityProvider>
-      <div className="flex justify-center items-center gap-5">
-        <ProductQuantity product={product} />
-        <LoadingButton
-          title="Add to Cart"
-          onClick={handleSubmit}
-          width="50%"
-          style={{
-            margin: "2rem auto",
-          }}
-        />
-      </div>
-    </ProductQuantityProvider>
+    <div className="flex justify-center items-center gap-5">
+      <ProductQuantity product={product} />
+      <LoadingButton
+        title="Add to Cart"
+        onClick={handleSubmit}
+        width="50%"
+        style={{
+          margin: "2rem auto",
+        }}
+      />
+    </div>
   );
 }

@@ -12,6 +12,11 @@ import UsersTable from "../pages/admin-dashboard/components/tables/Users";
 import MainLayout from "./Layout/MainLayout";
 import NotFound from "../components/NotFound";
 import ProductDetailsPage from "../pages/productDetails/ProductDetailsPage";
+import Checkout from "../pages/checkout/Checkout";
+import Cart from "../pages/cart/Cart";
+import SuccessPayment from "../pages/checkout/SuccessPayment";
+import CancelPayment from "../pages/checkout/CancelPayment";
+import SucessCashPayment from "../pages/checkout/SuccessCashPayment";
 
 function AppRoutes() {
   return (
@@ -26,7 +31,11 @@ function AppRoutes() {
         <Route path="/signin" element={<h1>signin</h1>} />
         <Route path="/signup" element={<h1>signup</h1>} />
         <Route path="/orders" element={<h1>orders</h1>} />
-        <Route path="/cart" element={<h1>cart</h1>} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/payment-success" element={<SuccessPayment />} />
+        <Route path="/payment-success-cash" element={<SucessCashPayment />} />
+        <Route path="/payment-cancel" element={<CancelPayment />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Route>
 
       <Route path="/admin" element={<DashboardLayout />}>

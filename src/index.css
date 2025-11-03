@@ -4,6 +4,7 @@
 @theme {
   --color-primary: #00000;
   --color-secondary: #232f3e;
+  --color-hover: #f2b400;
   --font-sans: "Poppins", sans-serif;
 }
 body {
