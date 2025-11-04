@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import { useUpdateOrderPaidStatusMutation } from "../../../slices/orderSlice";
 
 const OrderDetailsModal = ({ order, onClose, onUpdateStatus }) => {
+  console.log(order);
+
   const [updatePaid, { isLoading: isPaying }] =
     useUpdateOrderPaidStatusMutation();
 
@@ -112,19 +114,19 @@ const OrderDetailsModal = ({ order, onClose, onUpdateStatus }) => {
               {order.orderItems.map((item, i) => (
                 <li key={i} className="py-3 flex items-center gap-4">
                   <img
-                    src={item.product.images[0]?.url}
-                    alt={item.product.name}
+                    src={item.productId.images[0]?.url}
+                    alt={item.productId.name}
                     className="w-16 h-16 object-cover rounded"
                   />
                   <div>
                     <p className="font-medium text-gray-900">
-                      {item.product.name}
+                      {item.productId.name}
                     </p>
                     <p className="text-sm text-gray-600">
-                      Category: {item.product.category?.name}
+                      Category: {item.productId.category?.name}
                     </p>
                     <p className="text-sm text-gray-700">
-                      {item.quantity} × ${item.product.price?.toFixed(2)}
+                      {item.quantity} × ${item.productId.price?.toFixed(2)}
                     </p>
                   </div>
                 </li>

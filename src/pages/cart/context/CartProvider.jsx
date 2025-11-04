@@ -73,9 +73,18 @@ export function CartProvider({ children }) {
     );
   }, []);
 
-  const clearCart = useCallback(() => {
+  const clearCart = useCallback(async () => {
     setCart([]);
-    if (!user) localStorage.removeItem("cart");
+
+    if (user) {
+      try {
+        await axios.post("/cart", { cart: [] });
+      } catch (err) {
+        console.error("Failed to clear backend cart:", err);
+      }
+    } else {
+      localStorage.removeItem("cart");
+    }
   }, [user]);
 
   return (

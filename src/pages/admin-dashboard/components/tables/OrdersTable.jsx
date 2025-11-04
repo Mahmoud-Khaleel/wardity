@@ -62,7 +62,6 @@ const OrdersTable = ({
                   </span>
                 </td>
 
-                {/* ✅ Paid Column */}
                 <td className="py-3 px-4">
                   {order.isPaid ? (
                     <span className="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
