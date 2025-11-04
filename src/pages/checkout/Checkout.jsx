@@ -25,8 +25,11 @@ const Checkout = () => {
     0
   );
   const handlePayment = async () => {
+    if (!user.address) {
+      toast.error("please fill a shipping address");
+      return;
+    }
     const payload = {
-      orderItems: cart,
       shippingAddress: user.address,
       itemsPrice,
       shippingPrice: 50,
