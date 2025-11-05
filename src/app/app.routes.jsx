@@ -13,6 +13,7 @@ import CancelPayment from "../pages/checkout/CancelPayment";
 import SucessCashPayment from "../pages/checkout/SuccessCashPayment";
 import Profile from "../pages/ProfilePage";
 import Contact from "../pages/Contact/contact";
+import AboutUs from "../pages/aboutUs/aboutUs";
 import Login from "../pages/authentication/pages/Login";
 import Signup from "../pages/authentication/pages/Signup";
 import ForgotPassword from "../pages/authentication/pages/ForgotPassword";
@@ -45,7 +46,7 @@ function AppRoutes() {
           }
         />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<h1>about</h1>} />
+        <Route path="/about" element={<AboutUs />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
