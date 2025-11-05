@@ -6,14 +6,11 @@ import { ShoppingBag } from "lucide-react";
 import FilterSidebar from "./FilterSidebar";
 import ShimmerProducts from "./ShimmerProducts";
 import { Link } from "react-router-dom";
+import ProductShimmer from "./ProductShimmer";
 
 const AllProducts = () => {
   const { products, loading, error, page, setPage, limit } =
     useContext(ProductsContext);
-
-    if (loading) {
-        return <ShimmerProducts count={limit} />;
-    }
 
   if (error) {
     return <Error resource="products" error={error} />;
@@ -63,15 +60,19 @@ const AllProducts = () => {
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-            {products.map((product) => (
-              <Link
-                key={product._id}
-                to={`/products/${product._id}`}
-                className="hover:scale-105 transition-transform"
-              >
-                <Product product={product} />
-              </Link>
-            ))}
+            {loading
+              ? Array.from({ length: 8 }).map((_, index) => (
+                  <ProductShimmer key={index} />
+                ))
+              : products.map((product) => (
+                  <Link
+                    key={product._id}
+                    to={`/products/${product._id}`}
+                    className="hover:scale-105 transition-transform"
+                  >
+                    <Product product={product} />
+                  </Link>
+                ))}
           </div>
 
           <div className="flex justify-center items-center gap-4 mt-10">
