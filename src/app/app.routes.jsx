@@ -52,13 +52,13 @@ function AppRoutes() {
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
         <Route path="/orders" element={<h1>orders</h1>} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/payment-success" element={<SuccessPayment />} />
+        <Route path="/payment-success-cash" element={<SucessCashPayment />} />
+        <Route path="/payment-cancel" element={<CancelPayment />} />
 
         {/* User routes */}
         <Route element={<ProtectedRoutes userOnly />}>
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/payment-success" element={<SuccessPayment />} />
-          <Route path="/payment-success-cash" element={<SucessCashPayment />} />
-          <Route path="/payment-cancel" element={<CancelPayment />} />
         </Route>
       </Route>
 
