@@ -1,16 +1,16 @@
 import { useContext } from "react";
 import { ProductsContext } from "../context/product/ProductContext";
-import LoadingSpinner from "./LoadingSpinner";
 import Error from "./Error";
 import Product from "./Product";
 import { ShoppingBag } from "lucide-react";
 import FilterSidebar from "./FilterSidebar";
+import ShimmerProducts from "./ShimmerProducts";
 
 const AllProducts = () => {
     const { products, loading, error, page, setPage, limit } = useContext(ProductsContext);
 
     if (loading) {
-        return <LoadingSpinner resource="products" />;
+        return <ShimmerProducts count={limit} />;
     }
 
     if (error) {
