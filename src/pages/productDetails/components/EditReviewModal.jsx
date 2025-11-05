@@ -35,9 +35,9 @@ function EditReviewModal({ review, onClose }) {
 
       toast.success("Review updated successfully");
 
-      setProductReviews((prev) =>
-        prev.map((r) => (r._id === review._id ? data.data : r))
-      );
+      setProductReviews((prev) => [
+        ...prev.map((r) => (r._id === review._id ? data.data : r)),
+      ]);
 
       onClose();
     } catch (error) {
