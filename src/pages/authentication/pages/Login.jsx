@@ -20,9 +20,13 @@ export default function Login() {
   });
 
   const onSubmit = async (data) => {
-    const isSuccess = await login(data);
-    if (isSuccess) {
-      navigate(from, { replace: true });
+    const user = await login(data);
+    if (user) {
+      if (user.isAdmin) {
+        navigate("/admin/dashboard", { replace: true });
+      } else {
+        navigate(from, { replace: true });
+      }
     }
   };
 
