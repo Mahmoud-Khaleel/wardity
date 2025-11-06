@@ -4,11 +4,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import LoadingButton from "../../../components/LoadingButton";
 import useReviewAreaVisibility from "../context/reviewAreaVisibility/useReviewAreaVisibility";
 import useRating from "../context/rating/useRating";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import useProductReviews from "../context/productReviews/useProductReviews";
 import api from "../../../lib/axios";
 import { useParams } from "react-router-dom";
+import InputError from "../../../components/InputError";
 
 function AddReviewToProduct() {
   const [showTextAreaToWriteReview, setShowTextAreaToWriteReview] =
@@ -17,17 +18,26 @@ function AddReviewToProduct() {
   const [rating, setRating] = useRating();
   const [reviewText, setReviewText] = useState("");
   const { setProductReviews } = useProductReviews();
+  const [error, setError] = useState(null);
 
-  async function handleReviewSubmit() {
+  useEffect(() => {
     if (rating === 0) {
-      toast.error("Please provide a rating before submitting your review.");
+      setError("Please provide a rating before submitting your review.");
       return;
     }
 
     if (!reviewText.trim()) {
-      toast.error("Review text cannot be empty.");
+      setError("Review text cannot be empty.");
       return;
     }
+    setError(null);
+  }, [rating, reviewText]);
+
+  async function handleReviewSubmit() {
+    if (rating === 0 || !reviewText.trim()) {
+      return;
+    }
+
     try {
       const { data } = await api.post(`/products/${id}/reviews`, {
         review: reviewText,
@@ -63,6 +73,7 @@ function AddReviewToProduct() {
               onChange={(e) => setReviewText(e.target.value)}
               className="border border-gray-300 w-full rounded-md p-3 resize-none focus:outline-none focus:ring-2 focus:ring-[#1E2939]"
             />
+            {error && <InputError message={error} />}
 
             <LoadingButton
               onClick={handleReviewSubmit}

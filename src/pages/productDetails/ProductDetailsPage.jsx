@@ -11,9 +11,14 @@ import { useFetch } from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import ProductImagesCarousel from "./components/ProductImagesCarousel";
 import CircularProgressIndicator from "../../components/CircularProgressIndicator";
+import { useEffect } from "react";
 
 function ProductDetailsPage() {
   const { id } = useParams();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const { data: product, loading, error } = useFetch(`/products/${id}`);
   if (error) {
     return <Error message={error} />;
@@ -25,8 +30,8 @@ function ProductDetailsPage() {
 
   return (
     <ProductReviewsProvider>
-      <div className="flex flex-col md:flex-row mx-4 md:mx-10 my-10 gap-15">
-        <div className="w-full md:w-2/3">
+      <div className="flex flex-col md:flex-row mx-4 md:mx-10 my-10 gap-5">
+        <div className="w-full md:w-3/4">
           <ProductImagesCarousel product={product} />
           <ProductInfo product={product} />
           <ProductDescription product={product} />
@@ -36,7 +41,7 @@ function ProductDetailsPage() {
           <ProductReviews />
         </div>
 
-        <div className="w-full md:w-1/3 rounded-lg">
+        <div className="w-full md:w-1/4 rounded-lg">
           <SimilarProducts />
         </div>
       </div>

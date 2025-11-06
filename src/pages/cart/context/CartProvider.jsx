@@ -65,11 +65,11 @@ export function CartProvider({ children }) {
         if (existing) {
           updatedCart = prevCart.map((i) =>
             i.productId === item.productId
-              ? { ...i, quantity: i.quantity + 1 }
+              ? { ...i, quantity: i.quantity + item.quantity }
               : i
           );
         } else {
-          updatedCart = [...prevCart, { ...item, quantity: 1 }];
+          updatedCart = [...prevCart, { ...item, quantity: item.quantity }];
         }
 
         syncBackendCart(updatedCart);
@@ -96,17 +96,18 @@ export function CartProvider({ children }) {
   const updateQuantity = useCallback(
     (productId, quantity) => {
       setCart((prevCart) => {
-        const updatedCart = prevCart.map((i) =>
-          i.productId === productId ? { ...i, quantity } : i
+        const updatedCart = prevCart.map((item) =>
+          item.productId === productId ? { ...item, quantity } : item
         );
-        syncBackendCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-        return updatedCart;
+        const cleanedCart = updatedCart.filter((item) => item.quantity > 0);
+        syncBackendCart(cleanedCart);
+        localStorage.setItem("cart", JSON.stringify(cleanedCart));
+
+        return cleanedCart;
       });
     },
     [syncBackendCart]
   );
-
   const clearCart = useCallback(() => {
     setCart([]);
     localStorage.removeItem("cart");

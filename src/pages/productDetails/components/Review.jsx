@@ -39,9 +39,9 @@ function Review({ review }) {
       await api.delete(`/products/${id}/reviews/${review._id}`);
 
       toast.success("Review deleted successfully");
-      setProductReviews((prevReviews) =>
-        prevReviews.filter((r) => r._id !== review._id)
-      );
+      setProductReviews((prevReviews) => [
+        ...prevReviews.filter((r) => r._id !== review._id),
+      ]);
     } catch (error) {
       toast.error("Failed to delete review");
       console.log(error);

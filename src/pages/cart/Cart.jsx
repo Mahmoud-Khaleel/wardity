@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "./context/CartContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -11,7 +12,16 @@ const Cart = () => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  const invalidItems = cart.filter((item) => item.quantity > item.stock);
+  const hasInvalidItems = invalidItems.length > 0;
 
+  const handleIncrease = (item) => {
+    if (item.quantity + 1 > item.stock) {
+      toast.error(`Only ${item.stock} in stock for ${item.name}`);
+      return;
+    }
+    updateQuantity(item.productId, item.quantity + 1);
+  };
   return (
     <div className="flex flex-col md:flex-row gap-6 p-6 bg-gray-50 min-h-screen">
       <div className="flex-1 bg-white shadow-lg rounded-2xl p-6 border border-gray-100">
@@ -39,25 +49,21 @@ const Cart = () => {
                     <h3 className="font-semibold text-lg text-gray-800">
                       {item.name}
                     </h3>
-                    {item.size && (
-                      <p className="text-sm text-gray-600">
-                        Size:{" "}
-                        <span className="font-medium text-gray-800">
-                          {item.size}
-                        </span>
-                      </p>
-                    )}
-                    {item.color && (
-                      <p className="text-sm text-gray-600">
-                        Color:{" "}
-                        <span className="font-medium text-gray-800">
-                          {item.color}
-                        </span>
-                      </p>
-                    )}
-                    <p className="text-green-600 text-sm font-medium mt-1">
-                      In Stock
+
+                    <p
+                      className={`text-sm font-medium mt-1 ${
+                        item.stock > 0 ? "text-green-600" : "text-red-500"
+                      }`}
+                    >
+                      {item.stock > 0
+                        ? `In Stock: ${item.stock}`
+                        : "Out of Stock"}
                     </p>
+                    {item.quantity > item.stock && (
+                      <p className="text-red-500 text-sm mt-1 font-medium">
+                        The seller only allows {item.stock} items to buy.
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -75,9 +81,7 @@ const Cart = () => {
                       {item.quantity}
                     </span>
                     <button
-                      onClick={() =>
-                        updateQuantity(item.productId, item.quantity + 1)
-                      }
+                      onClick={() => handleIncrease(item)}
                       className="border px-3 rounded-md hover:bg-gray-100 font-bold text-gray-700"
                     >
                       +
@@ -128,10 +132,20 @@ const Cart = () => {
               ${itemsPrice.toFixed(2)}
             </span>
           </p>
+          {hasInvalidItems && (
+            <p className="text-red-500 text-sm mb-3 font-medium">
+              Please adjust your quantities — some items exceed stock limits.
+            </p>
+          )}
 
           <button
             onClick={() => navigate("/checkout")}
-            className="w-full bg-secondary hover:bg-hover text-white font-semibold py-3 rounded-lg mt-4 transition-all shadow-sm"
+            disabled={hasInvalidItems}
+            className={`w-full font-semibold py-3 rounded-lg mt-4 transition-all shadow-sm ${
+              hasInvalidItems
+                ? "bg-gray-400 cursor-not-allowed text-white"
+                : "bg-secondary hover:bg-hover text-white"
+            }`}
           >
             Proceed to Checkout
           </button>

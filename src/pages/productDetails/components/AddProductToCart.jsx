@@ -10,9 +10,8 @@ export default function AddProductToCart({ product }) {
   const { addToCart } = useContext(CartContext);
   const [quantity] = useProductQuantity();
   const { setProduct } = useProduct();
-  const { user } = useContext(AuthContext);
 
-  if (!user || product.stock === 0) {
+  if (product.stock === 0) {
     return;
   }
 
@@ -27,6 +26,7 @@ export default function AddProductToCart({ product }) {
         name: product.name,
         image: product.images?.length > 0 ? product.images[0].url : null,
         price: product.price,
+        stock: product.stock,
       };
 
       addToCart(productToAdd);
