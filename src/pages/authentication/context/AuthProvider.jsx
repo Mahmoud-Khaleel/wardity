@@ -100,10 +100,16 @@ export function AuthProvider({ children }) {
   );
 
   const updateFavorites = useCallback(
-    (newFavorites) => {
+    (updater) => {
       if (!user) return;
 
-      const updatedUser = { ...user, favorites: newFavorites };
+      const newFavorites = updater(user.favorites ?? []);
+
+      const updatedUser = {
+        ...user,
+        favorites: newFavorites,
+      };
+
       setUser(updatedUser);
       localStorage.setItem("user", JSON.stringify(updatedUser));
     },

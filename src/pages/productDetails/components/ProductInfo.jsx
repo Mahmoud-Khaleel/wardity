@@ -42,14 +42,24 @@ function ProductInfo({ product }) {
     if (isProcessing) return;
     setIsProcessing(true);
 
-    try {
-      const data = await api.post(`/user/favorites/${product._id}`);
-      setFavoritesNumber((prev) => prev + 1);
-      updateFavorites(data.data.data);
-    } catch {
-      toast.error(
-        "There is something wrong while adding to favorites, try again later."
+    // Optimistic UI update
+    setFavoritesNumber((prev) => prev + 1);
+    updateFavorites((prev) => {
+      console.log(
+        `This is the prev: ${prev}, and this is the user: ${JSON.stringify(
+          user
+        )}`
       );
+      return [...prev, product._id];
+    });
+
+    try {
+      await api.post(`/user/favorites/${product._id}`);
+    } catch {
+      // Rollback UI on error
+      setFavoritesNumber((prev) => prev - 1);
+      updateFavorites((prev) => prev.filter((id) => id !== product._id));
+      toast.error("There was a problem adding to favorites. Try again later.");
     } finally {
       setIsProcessing(false);
     }
@@ -59,13 +69,18 @@ function ProductInfo({ product }) {
     if (isProcessing) return;
     setIsProcessing(true);
 
+    // Optimistic UI update
+    setFavoritesNumber((prev) => prev - 1);
+    updateFavorites((prev) => prev.filter((id) => id !== product._id));
+
     try {
-      const data = await api.delete(`/user/favorites/${product._id}`);
-      setFavoritesNumber((prev) => prev - 1);
-      updateFavorites(data.data.data);
+      await api.delete(`/user/favorites/${product._id}`);
     } catch {
+      // Rollback UI on error
+      setFavoritesNumber((prev) => prev + 1);
+      updateFavorites((prev) => [...prev, product._id]);
       toast.error(
-        "There is something wrong while removing from favorites, try again later."
+        "There was a problem removing from favorites. Try again later."
       );
     } finally {
       setIsProcessing(false);
@@ -90,14 +105,12 @@ function ProductInfo({ product }) {
       <span>{category.name}</span>
       <VerticalDivider />
       <button
-        disabled={isProcessing}
         onClick={favorite ? removeProductFromFavorite : addProductToFavorite}
-        className={`cursor-pointer transition-all duration-200 ${
-          isProcessing ? "opacity-50 cursor-not-allowed" : ""
-        }`}
+        className="cursor-pointer"
       >
         <Icon
           icon={favorite ? FilledHeartIcon : HeartIcon}
+          hoverIcon={FilledHeartIcon}
           title={favoritesNumber ?? 0}
         />
       </button>
