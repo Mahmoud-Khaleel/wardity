@@ -6,6 +6,9 @@ const ProtectedRoutes = ({ adminOnly = false, userOnly = false }) => {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
+  if (adminOnly && userOnly) {
+    return <Outlet />;
+  }
   if (adminOnly && !user.isAdmin) {
     return <Navigate to="/unauthorized" replace />;
   }

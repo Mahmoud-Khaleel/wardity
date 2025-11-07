@@ -61,7 +61,7 @@ function AppRoutes() {
         <Route path="/payment-cancel" element={<CancelPayment />} />
 
         {/* User routes */}
-        <Route element={<ProtectedRoutes userOnly />}>
+        <Route element={<ProtectedRoutes userOnly adminOnly />}>
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/orders" element={<UserOrders />} />
