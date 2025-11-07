@@ -54,7 +54,7 @@ const FeaturesSection = () => {
               </h2>
               <p className="text-gray-600 leading-relaxed">{feature.text}</p>
               <Link
-                to="/shop"
+                to="/products"
                 className="hover:text-yellow-400 inline-block border border-gray-700 text-gray-900 px-6 py-2 rounded-sm hover:bg-gray-900 hover:text-white transition duration-300"
               >
                 View more →
