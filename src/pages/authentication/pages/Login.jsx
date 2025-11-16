@@ -75,10 +75,10 @@ export default function Login() {
       </form>
 
       <div className="mt-3 flex justify-between text-sm">
-        <Link to="/forgotPassword" className="text-yellow-600 hover:underline">
+        <Link to="/forgotPassword" className="text-pink-600 hover:underline">
           Forgot password?
         </Link>
-        <Link to="/signup" className="text-yellow-600 hover:underline">
+        <Link to="/signup" className="text-pink-600 hover:underline">
           Create account
         </Link>
       </div>

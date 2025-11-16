@@ -85,7 +85,7 @@ export default function ResetPassword() {
       </form>
 
       <div className="mt-3 text-sm">
-        <Link to="/login" className="text-yellow-600 hover:underline">
+        <Link to="/login" className="text-pink-600 hover:underline">
           Back to login
         </Link>
       </div>

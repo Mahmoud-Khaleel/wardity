@@ -72,7 +72,7 @@ const Profile = () => {
             <div className="flex space-x-3">
               <button
                 onClick={handleSave}
-                className="hover:text-yellow-400 bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
+                className="hover:text-pink-400 bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
               >
                 Save
               </button>
@@ -86,7 +86,7 @@ const Profile = () => {
           ) : (
             <button
               onClick={() => setIsEditing(true)}
-              className="hover:text-yellow-400 bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
+              className="hover:text-pink-400 bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
             >
               Edit
             </button>
@@ -189,7 +189,7 @@ const Profile = () => {
         <div className="mt-10 flex justify-between">
           <button
             onClick={() => navigate(user.isAdmin ? "/admin/dashboard" : "/")}
-            className="hover:text-yellow-400 bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
+            className="hover:text-pink-400 bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
           >
             {user.isAdmin ? "Go to Dashboard" : "Back Home"}
           </button>

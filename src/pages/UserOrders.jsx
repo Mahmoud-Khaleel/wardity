@@ -126,7 +126,7 @@ export default function UserOrders() {
                   <td
                     className={`border px-4 py-2 capitalize font-semibold ${
                       order.status === "pending"
-                        ? "text-yellow-600"
+                        ? "text-pink-600"
                         : order.status === "confirmed"
                         ? "text-green-600"
                         : "text-red-600"

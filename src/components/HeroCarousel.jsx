@@ -64,7 +64,7 @@ const HeroCarousel = () => {
             <p className="text-lg md:text-2xl mb-6">{img.subtitle}</p>
             <Link
               to="products"
-              className="hover:text-yellow-400 bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
+              className="hover:text-pink-400 bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-transform transform hover:scale-105"
             >
               Shop Now
             </Link>

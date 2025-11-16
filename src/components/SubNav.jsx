@@ -21,9 +21,7 @@ export default function SubNav() {
               key={category._id}
               to={`/category/${category._id}`}
               className={`text-sm transition-colors duration-200 ${
-                isActive
-                  ? "text-yellow-400 font-semibold"
-                  : "hover:text-yellow-400"
+                isActive ? "text-pink-400 font-semibold" : "hover:text-pink-400"
               }`}
             >
               {category.name}

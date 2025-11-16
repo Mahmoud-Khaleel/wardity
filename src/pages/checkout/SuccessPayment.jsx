@@ -30,7 +30,7 @@ const SuccessPayment = () => {
         <p className="text-gray-600 mb-4">{error}</p>
         <button
           onClick={() => navigate("/")}
-          className="bg-yellow-500 hover:bg-yellow-400 text-white px-4 py-2 rounded-lg"
+          className="bg-pink-500 hover:bg-pink-400 text-white px-4 py-2 rounded-lg"
         >
           Go Home
         </button>

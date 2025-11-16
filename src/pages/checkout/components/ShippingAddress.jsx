@@ -58,7 +58,7 @@ const ShippingAddress = () => {
               setShowForm(true);
               setNewAddress(user.address);
             }}
-            className="mt-2 text-sm text-hover hover:text-yellow-700 font-semibold"
+            className="mt-2 text-sm text-hover hover:text-pink-700 font-semibold"
           >
             Change Address
           </button>
@@ -66,7 +66,7 @@ const ShippingAddress = () => {
       ) : (
         <button
           onClick={() => setShowForm(true)}
-          className="mt-2 text-sm text-yellow-600 hover:text-yellow-700 font-semibold"
+          className="mt-2 text-sm text-pink-600 hover:text-pink-700 font-semibold"
         >
           Add Shipping Address
         </button>
@@ -81,7 +81,7 @@ const ShippingAddress = () => {
             onChange={(e) =>
               setNewAddress({ ...newAddress, address: e.target.value })
             }
-            className="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-yellow-500"
+            className="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-pink-500"
           />
           <input
             type="text"
@@ -90,7 +90,7 @@ const ShippingAddress = () => {
             onChange={(e) =>
               setNewAddress({ ...newAddress, city: e.target.value })
             }
-            className="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-yellow-500"
+            className="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-pink-500"
           />
           <input
             type="text"
@@ -99,7 +99,7 @@ const ShippingAddress = () => {
             onChange={(e) =>
               setNewAddress({ ...newAddress, postalCode: e.target.value })
             }
-            className="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-yellow-500"
+            className="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-pink-500"
           />
           <input
             type="text"
@@ -108,7 +108,7 @@ const ShippingAddress = () => {
             onChange={(e) =>
               setNewAddress({ ...newAddress, country: e.target.value })
             }
-            className="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-yellow-500"
+            className="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-pink-500"
           />
           <div className="flex justify-end gap-2">
             <button
@@ -119,7 +119,7 @@ const ShippingAddress = () => {
             </button>
             <button
               onClick={handleSaveAddress}
-              className="px-3 py-1 bg-yellow-500 text-white rounded-lg text-sm hover:bg-yellow-400"
+              className="px-3 py-1 bg-pink-500 text-white rounded-lg text-sm hover:bg-pink-400"
             >
               Save
             </button>

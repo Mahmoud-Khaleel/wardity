@@ -1,28 +1,28 @@
 import { Link } from "react-router-dom";
-import ChairImage from "../assets/chair.jpg";
-import TableImage from "../assets/tables.jpg";
-import LampImage from "../assets/lamps.jpg";
+import BouquetImage from "../assets/flower1.jpg";
+import ArrangementImage from "../assets/flower3.webp";
+import GiftBoxImage from "../assets/flower2.jpg";
 
 const features = [
   {
     id: 1,
-    title: "STYLISH CHAIRS",
-    text: "Discover our collection of beautifully crafted chairs that combine comfort and design. Each piece is made with premium materials, offering the perfect balance of elegance and durability for any modern home or workspace.",
-    image: ChairImage,
+    title: "FRESH BOUQUETS",
+    text: "Discover our hand-crafted bouquets designed to express every emotion — love, gratitude, celebration, or comfort. Each bouquet is freshly arranged using premium blooms and thoughtful combinations that brighten any moment.",
+    image: BouquetImage,
     reverse: false,
   },
   {
     id: 2,
-    title: "TABLE",
-    text: "From dining to working, our tables are designed to bring people together. Made with solid craftsmanship and timeless style, each table serves as a centerpiece that enhances your space while providing strength and functionality.",
-    image: TableImage,
+    title: "ELEGANT ARRANGEMENTS",
+    text: "From minimalist vases to grand floral displays, our arrangements are designed to bring nature’s beauty indoors. Perfect for home décor, offices, or gifting, every piece reflects care, color harmony, and timeless elegance.",
+    image: ArrangementImage,
     reverse: true,
   },
   {
     id: 3,
-    title: "CONTEMPORARY LAMPS",
-    text: "Light up your interiors with our contemporary lamps, blending artful design with soft, ambient illumination. Whether for reading or relaxation, they add warmth, character, and sophistication to any corner of your home.",
-    image: LampImage,
+    title: "GIFT BOXES & SURPRISES",
+    text: "Make every occasion unforgettable with our curated gift boxes that combine flowers, candles, and personalized notes. Whether it’s a birthday, anniversary, or a ‘just because’ gesture, Wardity helps you say it beautifully.",
+    image: GiftBoxImage,
     reverse: false,
   },
 ];
@@ -55,7 +55,7 @@ const FeaturesSection = () => {
               <p className="text-gray-600 leading-relaxed">{feature.text}</p>
               <Link
                 to="/products"
-                className="hover:text-yellow-400 inline-block border border-gray-700 text-gray-900 px-6 py-2 rounded-sm hover:bg-gray-900 hover:text-white transition duration-300"
+                className="hover:text-pink-400 inline-block border border-gray-700 text-gray-900 px-6 py-2 rounded-sm hover:bg-gray-900 hover:text-white transition duration-300"
               >
                 View more →
               </Link>

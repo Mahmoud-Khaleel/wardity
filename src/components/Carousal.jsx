@@ -1,9 +1,9 @@
 // components/HeroCarousel.jsx
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import CarousalImage1 from "../assets/c1.jpeg";
+import CarousalImage1 from "../assets/c1.jpg";
 import CarousalImage2 from "../assets/c2.jpg";
-import CarousalImage3 from "../assets/c3.jpeg";
+import CarousalImage3 from "../assets/c3.jpg";
 
 const images = [
   {
