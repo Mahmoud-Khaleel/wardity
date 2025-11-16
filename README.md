@@ -1,23 +1,24 @@
-# 🏠 Almanzl
+# 🌸 Wardity
 
-**Almanzl** is a modern **furniture e-commerce platform** inspired by IKEA.  
-It allows users to browse, search, and purchase furniture online with a smooth and elegant shopping experience.
+**Wardity** is a modern **flower e-commerce platform** designed to bring beauty and emotion to every occasion.  
+It allows users to explore, customize, and purchase floral arrangements online with a seamless and joyful shopping experience.
 
 ---
 
 ## 🌟 Features
 
-✅ **Home Page** – Displays featured furniture and categories  
-✅ **About & Contact Pages** – Information and user inquiries  
-✅ **Search & Filter** – Find products easily using advanced filters  
-✅ **Product Details** – View detailed product info, price, and images  
-✅ **Authentication** – Secure signup, login, and logout  
-✅ **Forgot & Reset Password** – Recover account securely  
-✅ **User Profile** – Manage personal information and orders  
-✅ **Cart & Checkout** – Add products and place orders  
-✅ **Stripe Integration** – Secure online payments  
-✅ **Admin Dashboard** – Manage products, orders, and users  
-✅ **Responsive Design** – Optimized for all screen sizes
+✅ **Home Page** – Showcases featured bouquets and seasonal collections  
+✅ **About & Contact Pages** – Share the story of Wardity and connect with customers  
+✅ **Search & Filter** – Find flowers by type, color, occasion, or price  
+✅ **Product Details** – View detailed product info, composition, and pricing  
+✅ **Authentication** – Secure signup, login, and logout for users  
+✅ **Forgot & Reset Password** – Recover accounts securely  
+✅ **User Profile** – Manage personal info, delivery addresses, and orders  
+✅ **Cart & Checkout** – Add floral products and complete purchases easily  
+✅ **Online Payments** – Integrated with **Stripe** for secure transactions  
+✅ **Admin Dashboard** – Manage products, categories, orders, and customers  
+✅ **Responsive Design** – Optimized for desktop and mobile  
+✅ **Special Offers** – Highlight promotions for holidays and events  
 
 ---
 
@@ -34,13 +35,10 @@ It allows users to browse, search, and purchase furniture online with a smooth a
 
 ---
 
----
-
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/Terror-1/Almanzl.git
-cd almanzl
-
+git clone https://github.com/Mahmoud-Khaleel/Wardity.git
+cd wardity
