@@ -40,5 +40,5 @@ It allows users to explore, customize, and purchase floral arrangements online w
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/YourUsername/Wardity.git
+git clone https://github.com/Mahmoud-Khaleel/Wardity.git
 cd wardity
