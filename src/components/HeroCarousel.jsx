@@ -9,19 +9,21 @@ import { Link } from "react-router-dom";
 const images = [
   {
     src: CarousalImage1,
-    title: "ALL FOR YOUR HOME",
+    title: "BLOOM WITH BEAUTY",
     subtitle:
-      "Discover our stylish furniture and contemporary home accessories",
+      "Discover our elegant floral arrangements and handcrafted bouquets for every occasion.",
   },
   {
     src: CarousalImage2,
-    title: "STYLISH AND MODERN",
-    subtitle: "Upgrade your living space with our modern designs",
+    title: "FRESH. FRAGRANT. FABULOUS.",
+    subtitle:
+      "Brighten someone’s day with our freshly picked flowers, designed to spread joy and love.",
   },
   {
     src: CarousalImage3,
-    title: "COMFORT MEETS STYLE",
-    subtitle: "Furniture and accessories crafted for comfort and elegance",
+    title: "NATURE’S ARTISTRY",
+    subtitle:
+      "Experience the charm of blossoms crafted with care — perfect for gifts, events, and moments that matter.",
   },
 ];
 
