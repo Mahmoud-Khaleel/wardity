@@ -16,35 +16,32 @@ function HomePage() {
     <div className="font-sans text-gray-800">
       <HeroCarousel></HeroCarousel>
 
-      <section className="py-16 px-8 mt-20 mb-10">
-        <h2 className="text-3xl font-semibold mb-4 text-center">
-          PRODUCTS OF THE WEEK
-        </h2>
+      <section className="py-20 px-8 mt-20 mb-10 bg-gradient-to-r from-rose-50 via-pink-50 to-rose-100 text-gray-800">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-semibold mb-6 text-pink-600">
+            <span className="text-rose-500">Wardity</span>
+          </h2>
 
-        <p className="text-center mx-auto mb-20 max-w-lg">
-          Check out our top picks this week! Each product is carefully selected
-          for quality and style. Don’t miss out on these limited-time favorites.
-        </p>
+          <p className="text-lg leading-relaxed text-gray-700 mb-8">
+            Wardity is more than just a flower shop — it’s a story of love,
+            color, and creativity. Founded with a passion for bringing nature’s
+            beauty closer to people’s hearts, we craft elegant floral
+            arrangements that make every occasion unforgettable.
+          </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          <ProductCard
-            image={data?.data[0]?.images[0]?.url}
-            price={data?.data[0]?.price}
-            name={data?.data[0]?.name}
-            link={`products/${data?.data[0]._id}`}
-          />
-          <ProductCard
-            image={data?.data[1]?.images[0]?.url}
-            price={data?.data[1]?.price}
-            name={data?.data[1]?.name}
-            link={`products/${data?.data[1]._id}`}
-          />
-          <ProductCard
-            image={data?.data[2]?.images[0]?.url}
-            price={data?.data[2]?.price}
-            name={data?.data[2]?.name}
-            link={`products/${data?.data[2]._id}`}
-          />
+          <p className="text-lg leading-relaxed text-gray-700 mb-8">
+            From weddings and anniversaries to simple “thinking of you” moments,
+            each Wardity bouquet is thoughtfully designed to express emotions
+            words can’t capture. We believe every flower tells a story — and we
+            make sure yours blooms beautifully.
+          </p>
+
+          <p className="text-lg leading-relaxed text-gray-700">
+            With fresh blooms sourced daily and crafted by our passionate
+            florists in Alexandria, Wardity continues to spread joy one bouquet
+            at a time. Let us help you turn life’s moments into lasting
+            memories.
+          </p>
         </div>
       </section>
 

@@ -8,21 +8,21 @@ import CarousalImage3 from "../assets/c3.jpg";
 const images = [
   {
     src: CarousalImage1,
-    title: "Our Latest Collections",
+    title: "Bloom with Wardity",
     subtitle:
-      "Discover our latest stylish furniture and contemporary home accessories",
+      "Fresh flowers crafted with love — perfect for every emotion, occasion, and celebration.",
   },
   {
     src: CarousalImage2,
-    title: "Our Latest Collections",
+    title: "Elegance in Every Petal",
     subtitle:
-      "Discover our latest stylish furniture and contemporary home accessories",
+      "From weddings to everyday moments, our floral designs bring beauty to life.",
   },
   {
     src: CarousalImage3,
-    title: "Our Latest Collections",
+    title: "Delivering Happiness Daily",
     subtitle:
-      "Discover our latest stylish furniture and contemporary home accessories",
+      "Order handcrafted bouquets and surprise your loved ones with nature’s charm.",
   },
 ];
 

@@ -78,7 +78,7 @@ export default function HomeNav() {
           <Search className="w-4 h-4 text-gray-200" />
           <input
             type="text"
-            placeholder="Search in almanzl..."
+            placeholder="Search in wardity..."
             className="bg-transparent text-sm text-white outline-none placeholder-gray-300 w-full px-2"
             onChange={handleSearch}
             onKeyDown={handleEnter}
